@@ -1,20 +1,90 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./pages/Home";
+import DetailScreen from "./pages/Detail";
+import SettingsScreen from "./pages/Basket";
+import ProfileScreen from "./pages/Profile";
+import { SafeAreaView } from "react-native-safe-area-context";
+import HomeIcon from "./constants/icons/HomeIcon";
+import BasketIcon from "./constants/icons/BasketIcon";
+import ProfileIcon from "./constants/icons/ProfileIcon";
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={DetailScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: "#FF9431",
+            tabBarShowLabel: false,
+            tabBarLabelStyle: {
+              paddingTop: 10,
+              borderRadius: 10,
+            },
+          }}
+        >
+          <Tab.Screen
+            name="HomeStack"
+            component={HomeStack}
+            options={{
+              tabBarLabel: "Home",
+              tabBarIcon: ({ color, size }) => (
+                <HomeIcon color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Basket"
+            component={SettingsScreen}
+            options={{
+              tabBarLabel: "Basket",
+              tabBarIcon: ({ color, size }) => (
+                <BasketIcon color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+              tabBarLabel: "Profile",
+              tabBarIcon: ({ color, size }) => (
+                <ProfileIcon color={color} size={size} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
