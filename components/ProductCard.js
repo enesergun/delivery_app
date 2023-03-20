@@ -9,17 +9,14 @@ function ProductCard({ data, navigation }) {
   return (
     <TouchableOpacity
       style={[HomeStyles.ProductCard, HomeStyles.ShadowProp]}
-      onPress={() => navigation.navigate("Detail")}
+      onPress={() => navigation.navigate("Detail", { id: data?.idMeal })}
     >
       <Ratings />
       <View style={HomeStyles.ProductImage}>
-        <Image
-          style={HomeStyles.Image}
-          src={"https://reactnative.dev/img/tiny_logo.png"}
-        />
+        <Image style={HomeStyles.Image} src={data?.strMealThumb} />
       </View>
       <View style={HomeStyles.ProductNameWrapper}>
-        <Text style={HomeStyles.ProductName}>Chicken burger</Text>
+        <Text style={HomeStyles.ProductName}>{data?.strMeal}</Text>
         <Text style={HomeStyles.ProductDescription}>
           2200 gr chicken + cheese Lettuce + tomato
         </Text>

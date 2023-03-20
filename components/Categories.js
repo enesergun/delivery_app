@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import HomeStyles from "../styles/HomeStyles";
 
-function Categories(props) {
+import { getCategories } from "../store/action/categories";
+
+
+function Categories({renderItem, selectedId, setSelectedId, ...props}) {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    const response = await getCategories();
+    setCategories(response?.categories);
+    setSelectedId(response?.categories[0]);
+  };
+
   return (
     <View style={HomeStyles.categoryContainer}>
       <Text style={HomeStyles.subTitle}>Categories</Text>
       <FlatList
-        data={DATA}
-        renderItem={props.renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={props.selectedId}
+        data={categories}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.idCategory}
+        extraData={selectedId}
         horizontal={true}
       />
     </View>

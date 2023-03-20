@@ -130,6 +130,18 @@ const HomeStyles = StyleSheet.create({
   AddButton: {
     color: "#fff",
   },
+  loading: {
+    position: "absolute",
+   flex: 1,
+   zIndex: 1,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
 });
 
 export default HomeStyles;

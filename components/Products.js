@@ -1,36 +1,41 @@
-import React, { useState } from "react";
-import { View, FlatList, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, FlatList, ActivityIndicator } from "react-native";
 
 import HomeStyles from "../styles/HomeStyles";
 import ProductCard from "./ProductCard";
 
-const DATA = [
-  {
-    id: "1",
-    title: "Pizza",
-  },
-  {
-    id: "2",
-    title: "Burger",
-  },
-  {
-    id: "3",
-    title: "Pasta",
-  },
-];
+import { getProducts } from "../store/action/products";
 
-function Products({ navigation}) {
+function Products({ navigation, selectedCategory, loading, setLoading }) {
+  const [products, setProducts] = useState([]);
+
+
+  useEffect(() => {
+    fetchProducts();
+  }, [selectedCategory]);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    const response = await getProducts(selectedCategory?.strCategory);
+    setProducts(response.meals);
+    setLoading(false);
+  };
+
+  console.log("products", products);
+
   const renderItem = ({ item }) => {
     return <ProductCard data={item} navigation={navigation} />;
   };
   return (
-    <View style={HomeStyles.Products}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        numColumns={2}
-        columnWrapperStyle={{ flex: 1, justifyContent: "space-between" }}
-      />
+    <View>
+      <View style={HomeStyles.Products}>
+        <FlatList
+          data={products}
+          renderItem={renderItem}
+          numColumns={2}
+          columnWrapperStyle={{ flex: 1, justifyContent: "space-between" }}
+        />
+      </View>
     </View>
   );
 }
