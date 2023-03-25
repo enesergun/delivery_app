@@ -12,6 +12,9 @@ import HomeIcon from "./constants/icons/HomeIcon";
 import BasketIcon from "./constants/icons/BasketIcon";
 import ProfileIcon from "./constants/icons/ProfileIcon";
 
+import { Provider, useSelector } from "react-redux";
+import { store } from "./store";
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -32,7 +35,10 @@ const HomeStack = () => {
   );
 };
 
-export default function App() {
+const AppWrapper = () => {
+  const { basket } = useSelector((state) => state.basketReducer);
+
+
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.container}>
@@ -62,6 +68,8 @@ export default function App() {
             component={SettingsScreen}
             options={{
               tabBarLabel: "Basket",
+              tabBarBadge: basket?.length > 0 ? basket?.length : null,
+              tabBarBadgeStyle: { backgroundColor: "#FF9431", color: "#fff"},
               tabBarIcon: ({ color, size }) => (
                 <BasketIcon color={color} size={size} />
               ),
@@ -80,6 +88,14 @@ export default function App() {
         </Tab.Navigator>
       </SafeAreaView>
     </NavigationContainer>
+  );
+};
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <AppWrapper />
+    </Provider>
   );
 }
 

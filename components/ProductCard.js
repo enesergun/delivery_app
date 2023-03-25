@@ -3,9 +3,16 @@ import { View, Image, Text, TouchableOpacity } from "react-native";
 
 import HomeStyles from "../styles/HomeStyles";
 import Star from "../constants/icons/Star";
+import { useDispatch, useSelector } from "react-redux";
 import Ratings from "./Ratings";
 
 function ProductCard({ data, navigation }) {
+  const { basket } = useSelector((state) => state.basketReducer);
+  const dispatch = useDispatch();
+
+  const handleAddBasket = () => {
+    dispatch({ type: "ADD_TO_BASKET", payload: [...basket, data] });
+  };
   return (
     <TouchableOpacity
       style={[HomeStyles.ProductCard, HomeStyles.ShadowProp]}
@@ -23,7 +30,10 @@ function ProductCard({ data, navigation }) {
       </View>
       <View style={HomeStyles.PriceWrapper}>
         <Text style={HomeStyles.Price}>$ 22.00</Text>
-        <TouchableOpacity style={HomeStyles.AddToBasket}>
+        <TouchableOpacity
+          style={HomeStyles.AddToBasket}
+          onPress={() => handleAddBasket()}
+        >
           <Text style={HomeStyles.AddButton}>+</Text>
         </TouchableOpacity>
       </View>

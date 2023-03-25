@@ -12,6 +12,7 @@ import { getCategories } from "../store/action/categories";
 
 function HomeScreen({ navigation }) {
   const [selectedCategory, setSelectedCategory] = useState();
+  const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
 
   const renderItem = ({ item }) => {
@@ -33,17 +34,19 @@ function HomeScreen({ navigation }) {
     <SafeAreaView style={HomeStyles.container}>
       {loading && (
         <View style={HomeStyles.loading}>
-          <ActivityIndicator size="large"  color={'#FF9431'}/>
+          <ActivityIndicator size="large" color={"#FF9431"} />
         </View>
       )}
       <View style={HomeStyles.pageWrapper}>
         <Header />
-        <Search />
-        <Categories
-          selectedId={selectedCategory?.idCategory}
-          renderItem={renderItem}
-          setSelectedId={setSelectedCategory}
-        />
+        <Search searchText={searchText} setSearchText={setSearchText} />
+        {!searchText && (
+          <Categories
+            selectedId={selectedCategory?.idCategory}
+            renderItem={renderItem}
+            setSelectedId={setSelectedCategory}
+          />
+        )}
         <Products
           navigation={navigation}
           selectedCategory={selectedCategory}
