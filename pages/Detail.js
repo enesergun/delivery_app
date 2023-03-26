@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import DetailStyles from "../styles/DetailStyles";
-import HomeStyles from "../styles/HomeStyles";
+import BasketAdding from "../components/BasketAdding";
 import BackIcon from "../constants/icons/BackIcon";
 import LikeIcon from "../constants/icons/LikeIcon";
 import Ratings from "../components/Ratings";
@@ -28,11 +28,10 @@ function DetailScreen({ navigation, route }) {
 
   const fetchDetails = async () => {
     const response = await getDetails(id);
-    console.log("response", response);
+
     setDetails(response.meals[0]);
   };
 
-  console.log("details", details);
   return (
     <SafeAreaView style={DetailStyles.container}>
       <View style={DetailStyles.header}>
@@ -57,15 +56,7 @@ function DetailScreen({ navigation, route }) {
           </View>
           <View style={DetailStyles.PriceCountWrapper}>
             <Text style={DetailStyles.Price}>$ 22.00</Text>
-            <View style={DetailStyles.BasketCount}>
-              <TouchableOpacity style={DetailStyles.CountButtons}>
-                <Text style={DetailStyles.Minus}>-</Text>
-              </TouchableOpacity>
-              <Text style={DetailStyles.Count}>1</Text>
-              <TouchableOpacity style={DetailStyles.CountButtons}>
-                <Text style={DetailStyles.Plus}>+</Text>
-              </TouchableOpacity>
-            </View>
+            <BasketAdding data={details} />
           </View>
           <View style={DetailStyles.AboutOrder}>
             <View style={DetailStyles.AboutCard}>

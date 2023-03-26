@@ -10,7 +10,7 @@ const basketReducer = (state = initialState, action) => {
     case ADD_TO_BASKET:
       return { ...state, basket: payload };
     case REMOVE_FROM_BASKET:
-      return { ...state, basket: [] };
+      return { ...state, basket: payload };
     default:
       return state;
   }

@@ -72,20 +72,34 @@ const HomeStyles = StyleSheet.create({
   BasketCount: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FFF1E5",
     borderRadius: 20,
     padding: 10,
   },
 
+  AddToBasket: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+    backgroundColor: "#FF9431",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  AddButton: {
+    color: "#fff",
+  },
   CountButtons: {
-    width: 40,
-    height: 40,
+    width: 0,
+    height: 30,
     borderRadius: 50,
     fontWeight: "bold",
     color: "#fff",
     backgroundColor: "#FF9431",
     justifyContent: "center",
     alignItems: "center",
+  },
+  ViewCountData: {
+    width: 30,
+    display: "flex",
   },
   Minus: {
     fontSize: 30,
@@ -98,8 +112,11 @@ const HomeStyles = StyleSheet.create({
     color: "#fff",
   },
   Count: {
-    paddingHorizontal: 20,
+    textAlign: "center",
     fontSize: 18,
+    color: "#000",
+    marginTop: 5,
+    backgroundColor: "transparent",
     fontWeight: "bold",
   },
   AboutOrder: {
@@ -151,7 +168,7 @@ const HomeStyles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-  }
+  },
 });
 
 export default HomeStyles;

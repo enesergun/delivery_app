@@ -21,7 +21,6 @@ function Products({ navigation, selectedCategory, loading, setLoading }) {
     setLoading(false);
   };
 
-  console.log("products", products);
 
   const renderItem = ({ item }) => {
     return <ProductCard data={item} navigation={navigation} />;

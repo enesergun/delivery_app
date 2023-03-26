@@ -1,6 +1,6 @@
 # Delivery App with React Native
 
-Delivery App is a mobile app built with React Native that allows users to browse and search for food items by category, add them to a cart, and view detailed information about each item. 
+Delivery App is a mobile app built with React Native that allows users to browse and search for food items by category, add them to a cart, and view detailed information about each item.
 
 ## Getting Started
 
@@ -15,7 +15,7 @@ TTo run the app on your local machine, you will need to have Node.js and Expo CL
 
 ## Features
 
-- Browse food items by category: The app allows users to browse food items by category, such as appetizers, entrees, desserts, and beverages. 
+- Browse food items by category: The app allows users to browse food items by category, such as appetizers, entrees, desserts, and beverages.
 - Search for food items: Users can search for specific food items by name or keyword.
 - Add items to cart: Users can add food items to their cart and view the cart total.
 - View item details: Users can view detailed information about each food item, including ingredients, nutritional information, and customer reviews.
@@ -24,13 +24,12 @@ TTo run the app on your local machine, you will need to have Node.js and Expo CL
 
 - [React Native](https://reactnative.dev/)
 - [React Navigation](https://reactnavigation.org/)
-
+- [Redux](https://redux.js.org/)
 - [Axios](https://axios-http.com/)
-
 
 ## Contributing
 
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes. 
+If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
 
 ## License
 

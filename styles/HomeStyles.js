@@ -112,24 +112,15 @@ const HomeStyles = StyleSheet.create({
   },
   PriceWrapper: {
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
   },
   Price: {
-    fontSize: 21,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#FF9431",
   },
-  AddToBasket: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    backgroundColor: "#FF9431",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  AddButton: {
-    color: "#fff",
-  },
+ 
   loading: {
     position: "absolute",
    flex: 1,
